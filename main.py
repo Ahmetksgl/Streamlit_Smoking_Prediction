@@ -40,8 +40,8 @@ column_sig2.markdown("The competition dataset titled 'Binary Prediction of Smoki
 
 
 df = get_data()
-
-# column_sig2.dataframe(df)
+df_ = df.head(50)
+column_sig2.dataframe(df_)
 
 column_sig.subheader('Features👀')
 
