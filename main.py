@@ -76,22 +76,24 @@ column_sig2.markdown('''
 # GRAPHICS
 
 vis_1, vis_2 = tab_vis.columns(2)
+dff = df.sample(500)
 
 # Graphic 1
 vis_1.subheader(':red[Target]')
-fig = px.pie(df, names='smoking', title='Smoking Distribution', color='smoking', color_discrete_map={0: 'lightcoral', 1: 'lightskyblue'})
+fig = px.pie(dff, names='smoking', title='Smoking Distribution', color='smoking', color_discrete_map={0: 'lightcoral', 1: 'lightskyblue'})
 vis_1.plotly_chart(fig)
+
 
 # Graphic 2
 color_scale = px.colors.qualitative.Set1
-fig_2 = px.histogram(df, x='age', color='smoking', nbins=20, marginal='rug', opacity=0.7, barmode='overlay',
+fig_2 = px.histogram(dff, x='age', color='smoking', nbins=20, marginal='rug', opacity=0.7, barmode='overlay',
                    title='Histogram of Smokers by Age', color_discrete_sequence=color_scale)
 fig_2.update_layout(xaxis_title='Age', yaxis_title='Frequency')
 fig_2.update_traces(overwrite=True, showlegend=False)
 vis_2.plotly_chart(fig_2)
 
 # Graphic 3
-fig_3 = px.histogram(df, x='triglyceride', color='smoking', nbins=20, opacity=0.7, barmode='overlay',
+fig_3 = px.histogram(dff, x='triglyceride', color='smoking', nbins=20, opacity=0.7, barmode='overlay',
                    title='Histogram of Triglyceride by Smoking Status', color_discrete_sequence=color_scale)
 fig_3.update_layout(xaxis_title='Triglyceride', yaxis_title='Frequency')
 fig_3.update_traces(overwrite=True, showlegend=False)
@@ -99,7 +101,7 @@ vis_1.plotly_chart(fig_3)
 
 # Graphic 4
 scatter_fig = px.scatter(
-    df,
+    dff,
     x="age",
     y="triglyceride",
     size="hemoglobin",
